@@ -1,10 +1,10 @@
 FROM archlinux:latest
 
-WORKDIR /
-COPY ./setup.sh .
-RUN bash setup.sh
-COPY ./index/*.fits /usr/local/astrometry/data/
-COPY ./index/download.sh /usr/local/astrometry/bin/
-
-WORKDIR /
+WORKDIR /app
+COPY . .
+RUN pacman -Syu --noconfirm
+RUN pacman -S --noconfirm base-devel git sudo wget python-pip
 RUN bash
+# RUN source bin/activate
+# RUN pip install flask requests jsonify
+# RUN python src/route.py
